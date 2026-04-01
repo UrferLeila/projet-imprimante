@@ -8,10 +8,7 @@
 </head>
 <body>
 <div class="div-login">
-    <header class="main-header">
-        <h1 class="logo-title">Job dispatcher</h1>
-        <div class="profile-circle"></div>
-    </header>
+    <x-header/>
     <div class="flex flex-1 items-center justify-center p-4">
         <div class="w-full max-w-xl text-center">
             <h2 class="text-3xl font-bold mb-10">Créer un compte</h2>
