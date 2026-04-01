@@ -1,3 +1,74 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*Style du header*/
+.main-header {
+    background-color: #4338ca;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.logo-title {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.profile-circle {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #d1d5db;
+    border-radius: 9999px;
+}
+
+/*Style de la page de login*/
+.input-login {
+    background-color: white;
+    border-radius: 10px;
+    padding: 14px 20px;
+    width: 100%;
+}
+
+.div-login {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #2b2e38;
+    color: white;
+}
+
+.label-login {
+    width: 33.33%;
+    text-align: left;
+}
+
+.href-login {
+    color: #818cf8;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.href-login:hover {
+    text-decoration: underline;
+}
+
+.btn-login {
+    background-color: #4338ca;
+    color: white;
+    padding: 0.75rem 2.5rem;
+    border-radius: 0.75rem;
+    font-size: 1.125rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: #3730a3;
+}
