@@ -26,12 +26,13 @@
     border-radius: 9999px;
 }
 
-/*Style de la page de login*/
+/*Style de la page de login et connection*/
 .input-login {
     background-color: white;
     border-radius: 10px;
     padding: 14px 20px;
     width: 100%;
+    color: black;
 }
 
 .div-login {
@@ -71,4 +72,56 @@
 
 .btn-login:hover {
     background-color: #3730a3;
+}
+
+/*Styles page d'acceuil*/
+.status-circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.bg-green {
+    background-color: #1ed714;
+}
+
+.bg-orange {
+    background-color: #ffbd14;
+}
+
+.bg-red {
+    background-color: #ff0000;
+}
+
+.btn-add {
+    background-color: #313bac;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.btn-add:hover {
+    background-color: #252d8a;
+}
+
+.task-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    color: black;
+    font-size: 1.2rem;
+}
+
+.task-info {
+    display: flex;
+    gap: 50px;
+    flex: 1;
 }
