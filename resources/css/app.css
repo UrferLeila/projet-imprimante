@@ -19,10 +19,21 @@
 }
 
 .profile-circle {
-    width: 2.5rem;
-    height: 2.5rem;
-    background-color: #d1d5db;
-    border-radius: 9999px;
+    width: 40px;
+    height: 40px;
+    background-color: #f3f4f6;
+    /* Gris très clair pour trancher avec le header violet */
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.profile-circle:hover {
+    border-color: white;
 }
 
 /*Style de la page de login et connection*/
