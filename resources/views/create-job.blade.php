@@ -3,39 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impression 3D - Téléchargement</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<div class="div-login">
-    <x-header/>
-    <div class="flex flex-1 items-center justify-center p-10">
-        <div class="w-full max-w-5xl">
-            <div class="drop-zone shadow-lg">Glisser-déposer votre fichier à imprimer</div>
-            <div class="mb-12">
-                <div class="flex justify-between text-2xl mb-2">
-                    <span>fichier_a_imprimer</span>
-                    <span>85%</span>
-                </div>
-                <div class="progress-container">
-                    <div class="progress-bar"></div>
-                </div>
-                <p class="mt-2 text-gray-300">En cours de téléchargement...</p>
-            </div>
-            <form method="POST">
-                @csrf
-                <div class="flex justify-around mb-16">
-                    <div class="flex items-center gap-6 text-3xl">
-                        <label>Couleur :</label>
-                        <select class="select-custom">
-                            <option value="blanc">Blanc</option>
-                        </select>
+
+<body class="antialiased">
+    <div class="div-login min-h-screen flex flex-col" x-data="{ fileName: '', isDragging: false }">
+        <x-header/>
+        
+        <div class="flex flex-1 items-center justify-center p-6 md:p-10">
+            <div class="w-full max-w-4xl">
+                
+                <form method="POST" enctype="multipart/form-data">
+                    @csrf
+                    
+                    <div class="mb-10">
+                        <label for="inputfile" 
+                            class="drop-zone shadow-lg flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-12 transition-all cursor-pointer group min-h-[300px]"
+                            :class="isDragging ? 'border-blue-500 bg-blue-50/20 scale-[1.01]' : 'border-gray-400'"
+                            @dragover.prevent="isDragging = true"
+                            @dragleave.prevent="isDragging = false"
+                            @drop.prevent="isDragging = false; fileName = $event.dataTransfer.files[0].name">
+                            
+                            <div class="text-center w-full">
+                                <div class="mb-4 h-16 flex items-center justify-center">
+                                    <template x-if="!fileName">
+                                        <svg class="w-16 h-16 opacity-40 group-hover:opacity-100 text-gray-500 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                        </svg>
+                                    </template>
+
+                                    <template x-if="fileName">
+                                        <svg class="w-16 h-16 text-green-500 animate-bounce-short" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </template>
+                                </div>
+
+                                <h3 class="text-xl font-semibold mb-2" :class="fileName ? 'text-green-700' : ''">
+                                    <span x-show="!fileName">Glisser-déposer votre fichier à imprimer</span>
+                                    <span x-show="fileName">Fichier sélectionné avec succès !</span>
+                                </h3>
+                                
+                                <div x-show="fileName" class="mt-2 inline-flex items-center px-4 py-2 bg-white/80 border border-green-200 rounded-full shadow-sm">
+                                    <span class="text-sm font-mono text-gray-700 break-all" x-text="fileName"></span>
+                                </div>
+
+                                <div x-show="!fileName" class="text-sm opacity-60">
+                                    STL, OBJ, STEP (Max 50MB)
+                                </div>
+
+                                <p class="mt-4 text-xs font-bold uppercase tracking-widest text-blue-500" x-show="fileName">
+                                    Cliquer pour changer
+                                </p>
+                            </div>
+
+                            <input type="file" id="inputfile" name="inputfile" class="hidden"
+                                   @change="fileName = $event.target.files[0] ? $event.target.files[0].name : ''">
+                        </label>
                     </div>
-                </div>
-                <div class="flex justify-center gap-10">
-                    <a href="{{ route('home') }}" class="btn-login">Annuler</a>
-                    <button type="submit" class="btn-login">Envoyer</button>
-                </div>
-            </form>
+
+                    <div class="flex flex-col items-center mb-12">
+                        <div class="flex flex-col md:flex-row items-center gap-6 w-full justify-center">
+                            <label class="text-2xl font-semibold">Configuration :</label>
+                            <select name="config" class="select-custom p-3 rounded-lg text-lg outline-none focus:ring-2 focus:ring-blue-400 min-w-[300px]">
+                                <option value="blanc_pla">Blanc, PLA</option>
+                                <option value="blanc_petg">Blanc, PETG</option>
+                                <option value="noir_abs">Noir, ABS</option>
+                                <option value="noir_nylon">Noir, Nylon</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row justify-center gap-6">
+                        <a href="{{ route('home') }}" 
+                           class="btn-login px-12 py-4 rounded-full text-center no-underline transition-all flex items-center justify-center">
+                            Annuler
+                        </a>
+                        <button type="submit" 
+                                class="btn-login px-12 py-4 rounded-full font-bold shadow-lg transition-all transform hover:scale-105 active:scale-95 disabled:opacity-30 disabled:grayscale disabled:cursor-not-allowed"
+                                :disabled="!fileName">
+                            Envoyer
+                        </button>
+                    </div>
+
+                </form>
+            </div>
         </div>
     </div>
-</div>
+</body>
 </html>
