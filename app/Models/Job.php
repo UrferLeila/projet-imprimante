@@ -27,16 +27,24 @@ class Job extends Model
         'id_printer',
         
         'id_slicer_profile',
+        'name_state',
         'id_user',
     ];
 
-     public function user()
+    public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class, 'name_state', 'name');
     }
 
     public function slicerprofile()
     {
         return $this->belongsTo(SlicerProfile::class);
     }
+
+
 }

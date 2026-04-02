@@ -28,6 +28,8 @@ return new class extends Migration
             $table->string('id_printer',50)->nullable();
 
             $table->foreignId('id_slicer_profile');
+            $table->string('name_state');
+            $table->foreign('name_state')->references('name')->on('state');
             $table->foreignId('id_user');
         });
     }

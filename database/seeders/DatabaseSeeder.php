@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Job;
 use App\Models\SlicerProfile;
+use App\Models\State;
 use App\Models\User;
-use DateTime;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,11 +13,8 @@ class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
 
-
     public function run(): void
     {
-        // User::factory(10)->create();
-
         User::factory()->createMany([
            [ 'name' => 'Test',
              'email' => 'test@ceff.ch',
@@ -60,6 +57,29 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
+        State::factory()->createMany(
+            [
+                [
+                    'name' => 'Waiting to be sliced',
+                ],
+                [
+                    'name' => 'slicing error',
+                ],
+                [
+                    'name' => 'waiting to be printed',
+                ],
+                [
+                    'name' => 'printing',
+                ],
+                [
+                    'name' => 'printed',
+                ],
+                [
+                    'name' => 'printing error',
+                ],
+            ]
+        );
+
          Job::factory()->createMany(
             [
                 [
@@ -75,6 +95,8 @@ class DatabaseSeeder extends Seeder
                     'print_at'          => null,  
                     'finish_at'         => null,  
                     'id_printer'        => null, 
+
+                    'name_state'        => 'Waiting to be sliced',
                     'id_slicer_profile' => 1,    
                     'id_user'           => 1,    
                 ],
@@ -91,6 +113,8 @@ class DatabaseSeeder extends Seeder
                     'print_at'          => null,
                     'finish_at'         => null,
                     'id_printer'        => null,
+
+                    'name_state'        => 'waiting to be printed',
                     'id_slicer_profile' => 2,
                     'id_user'           => 1,
                 ],
@@ -107,10 +131,14 @@ class DatabaseSeeder extends Seeder
                     'print_at'          => now()->subHours(4),
                     'finish_at'         => now(),
                     'id_printer'        => 'Ender-3-V2-01',
+
+                    'name_state'        => 'printed',
                     'id_slicer_profile' => 2,
                     'id_user'           => 1,
                 ],
             ]
         );
+
+        
     }
 }

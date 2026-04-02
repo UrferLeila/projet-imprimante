@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\State;
 use App\Models\SlicerProfile;
 use App\Models\Job;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -35,6 +36,7 @@ class JobFactory extends Factory
             'finish_at' => null,
             'id_printer' => null,
 
+            'name_state' => State::factory(),
             'id_slicer_profile' => SlicerProfile::factory(),
             'id_user' => User::factory(),
         ];
