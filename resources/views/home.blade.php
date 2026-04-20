@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/home.css', 'resources/js/app.js'])
 </head>
 <body>
     <div class="main-wrapper">
         <x-header/>
         <main class="content-container">
             <div class="div2-home">
-                <h2>Vos jobs</h2>
-                <div class="actions-header">
-                    <a href="{{ route('jobs.create') }}" class="btn-add">Ajouter un job</a>
-                </div>
+                <h2 class="title-home">Vos jobs</h2>
+                <x-link-button-style href="{{ route('jobs.create') }}">Ajouter</x-link-button-style>
             </div>
             <div class="tasks-list">
                 @foreach ($jobs as $job)
