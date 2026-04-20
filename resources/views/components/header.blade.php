@@ -1,3 +1,10 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite(['resources/css/header.css'])
+</head>
+
 <header class="main-header">
     <div class="div-header">
         <h1 class="header-title"><a href="{{ route('home') }}">Job Dispatcher</a></h1>
