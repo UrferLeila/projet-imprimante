@@ -10,8 +10,8 @@
         <x-header/>
         <main class="content-container">
             <div class="div2-home">
-                <h2>Vos jobs</h2>
-                  <x-button-style href="{{ route('jobs.create') }}">Ajouter</x-button-style>
+                <h2 class="title-home">Vos jobs</h2>
+                <x-link-button-style href="{{ route('jobs.create') }}">Ajouter</x-link-button-style>
             </div>
             <div class="tasks-list">
                 @foreach ($jobs as $job)

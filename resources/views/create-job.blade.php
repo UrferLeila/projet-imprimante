@@ -86,8 +86,8 @@
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row justify-center gap-6">
-                         <x-button-style href="{{ route('home') }}">Annuler</x-button-style>
-                         <x-button-style href="{{ route('home') }}">Envoyer</x-button-style>
+                         <x-link-button-style href="{{ route('home') }}">Annuler</x-button-style>
+                         <x-link-button-style href="{{ route('home') }}">Envoyer</x-button-style>
                     </div>
                 </form>
             </div>
