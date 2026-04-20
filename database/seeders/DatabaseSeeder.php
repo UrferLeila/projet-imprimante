@@ -15,30 +15,36 @@ class DatabaseSeeder extends Seeder
 
     public function run(): void
     {
-        User::factory()->createMany([
-           [ 'name' => 'Test',
-             'email' => 'test@ceff.ch',
-             'password'=> bcrypt('1234'),
-            ],
+        User::factory()->createMany(
+            [
+                [ 
+                'name' => 'Admin',
+                'email' => 'admin@ceff.ch',
+                'password'=> bcrypt('1234'),
+                ],
 
-            ['name' => 'Leila',
-             'email' => 'leila@ceff.ch',
-             'password'=> bcrypt('1234'),
+                [
+                'name' => 'Leila',
+                'email' => 'leila@ceff.ch',
+                'password'=> bcrypt('1234'),
 
-            ],
+                ],
 
-            ['name' => 'Gwen',
-             'email' => 'gwendoline@ceff.ch',
-             'password'=> bcrypt('1234'),
+                [
+                'name' => 'Gwen',
+                'email' => 'gwendoline@ceff.ch',
+                'password'=> bcrypt('1234'),
 
-            ],
+                ],
 
-            ['name' => 'Simon',
-             'email' => 'simon@ceff.ch',
-             'password'=> bcrypt('1234'),
+                [
+                'name' => 'Simon',
+                'email' => 'simon@ceff.ch',
+                'password'=> bcrypt('1234'),
 
-            ],
-        ]);
+                ],
+            ]
+        );
 
         SlicerProfile::factory()->createMany(
             [
