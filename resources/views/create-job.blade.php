@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/create-job.css', 'resources/js/app.js'])
 </head>
 
 <body class="antialiased">
@@ -86,17 +86,9 @@
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row justify-center gap-6">
-                        <a href="{{ route('home') }}" 
-                           class="btn-login px-12 py-4 rounded-full text-center no-underline transition-all flex items-center justify-center">
-                            Annuler
-                        </a>
-                        <button type="submit" 
-                                class="btn-login px-12 py-4 rounded-full font-bold shadow-lg transition-all transform hover:scale-105 active:scale-95 disabled:opacity-30 disabled:grayscale disabled:cursor-not-allowed"
-                                :disabled="!fileName">
-                            Envoyer
-                        </button>
+                         <x-button-style href="{{ route('home') }}">Annuler</x-button-style>
+                         <x-button-style href="{{ route('home') }}">Envoyer</x-button-style>
                     </div>
-
                 </form>
             </div>
         </div>
