@@ -7,11 +7,11 @@
 <section class="delete-section">
     <header>
         <h2 class="delete-title">
-            {{ __('Supprimer le compte') }}
+            {{ __('edit.title_delete_account_edit') }}
         </h2>
 
         <p class="delete-desc">
-            {{ __('La suppression de votre compte est une action irréversible. Tous vos données seront définitivement supprimées.') }}
+            {{ __('edit.description_delete_account_edit') }}
         </p>
     </header>
 
@@ -20,7 +20,7 @@
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
     >
-        {{ __('Supprimer le compte') }}
+        {{ __('edit.delete_account_edit') }}
     </x-danger-button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
@@ -29,22 +29,21 @@
             @method('delete')
 
             <h2 class="delete-title">
-                {{ __('Êtes-vous sûr de vouloir supprimer votre compte ?') }}
+                {{ __('edit.confirm_delete_account_edit') }}
             </h2>
 
             <p class="delete-desc">
-                {{ __('La suppression de votre compte est une action irréversible. Tous vos données seront définitivement supprimées.') }}
+                {{ __('edit.delete_account_description_confirm_edit') }}
             </p>
 
             <div class="input-password-wrapper">
-                <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
-
+                <x-input-label for="password" value="{{ __('edit.password_text_edit') }}" class="sr-only" />
                 <x-text-input
                     id="password"
                     name="password"
                     type="password"
                     class="input-password-field"
-                    placeholder="{{ __('Mot de passe') }}"
+                    placeholder="{{ __('edit.password_text_edit') }}"
                 />
 
                 <x-input-error :messages="$errors->userDeletion->get('password')" class="error-msg" />
@@ -52,11 +51,11 @@
 
             <div class="actions-row">
                 <x-secondary-button class="btn-secondary" x-on:click="$dispatch('close')">
-                    {{ __('Annuler') }}
+                    {{ __('edit.bouton_cancel_delete_account_edit') }}
                 </x-secondary-button>
 
                 <x-danger-button class="btn-danger">
-                    {{ __('Supprimer le compte') }}
+                    {{ __('edit.bouton_confirm_delete_account_edit') }}
                 </x-danger-button>
             </div>
         </form>

@@ -55,7 +55,7 @@
     .btn-header:hover {
         background-color: #f3f4f6;
     }
-    
+
     .btn-profile {
         text-align: left;
         padding: 8px 16px;
@@ -101,5 +101,42 @@
         color: white;
         font-size: 30px;
         font-weight: bold;
+    }
+
+    .lang-selector {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: sans-serif;
+    }
+
+    .lang-link {
+        color: #000000 !important;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 400;
+        transition: all 0.2s;
+        opacity: 0.6;
+    }
+
+    .lang-link:hover {
+        opacity: 1;
+        text-decoration: underline;
+    }
+
+    .lang-link.active {
+        font-weight: 800;
+        opacity: 1;
+        cursor: default;
+    }
+
+    .lang-link.active:hover {
+        text-decoration: none;
+    }
+
+    .lang-separator {
+        color: #000000;
+        opacity: 0.3;
+        font-size: 12px;
     }
 }
