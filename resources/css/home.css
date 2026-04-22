@@ -92,3 +92,9 @@
     margin: -10px;
 }
 
+.btn-delete {
+    color: red;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 10px;
+}

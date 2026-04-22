@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
         ]);
 
         $basePath = config('services.nfs.path');
-        $folderName = Str::slug($user->id_user) . '-' . Str::slug($user->name);
+        $folderName = Str::slug($user->id_user);
         $userFolderPath = $basePath . DIRECTORY_SEPARATOR . $folderName;
 
         if (!File::exists($userFolderPath)) {

@@ -41,22 +41,27 @@ class JobController extends Controller
         if ($request->hasFile('inputfile')) {
             $file = $request->file('inputfile');
             $fileName = $file->getClientOriginalName();
-            
+
             $file->storeAs($folderPath, $fileName, 'public');
 
             Job::create([
-                'name'              => $request->name,
-                'path'              => $folderPath, 
-                'name_state'        => 'waiting',
-                'stl_filename'      => $fileName,
+                'name' => $request->name,
+                'path' => $folderPath,
+                'name_state' => 'waiting',
+                'stl_filename' => $fileName,
                 'id_slicer_profile' => $request->id_slicer_profile,
-                'id_user'           => $user->id_user,
-                'create_at'         => now(),
+                'id_user' => $user->id_user,
+                'create_at' => now(),
             ]);
 
             return redirect()->route('home')->with('success', 'Job envoyé au serveur NFS !');
         }
-            return back()->withErrors(['inputfile' => 'Erreur lors du transfert du fichier.']);
+        return back()->withErrors(['inputfile' => 'Erreur lors du transfert du fichier.']);
+    }
 
+    public function destroy(Job $job)
+    {
+        $job->delete();
+        return redirect()->route('home')->with('success', 'Job supprimé avec succès');
     }
 }

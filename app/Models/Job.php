@@ -12,6 +12,7 @@ class Job extends Model
 
     protected $table = 'job';
     public $timestamps = false;
+    protected $primaryKey = 'id_job';
 
     protected $fillable = [
         'name',
@@ -50,14 +51,14 @@ class Job extends Model
     protected function statusColor(): Attribute
     {
         return Attribute::make(
-            get: fn () => match ($this->name_state) {
-                'Finished'       => 'green',
-                'Printing'       => 'orange',
-                'Sliced'         => 'blue',
-                'Waiting'        => 'gray',
+            get: fn() => match ($this->name_state) {
+                'Finished' => 'green',
+                'Printing' => 'orange',
+                'Sliced' => 'blue',
+                'Waiting' => 'gray',
                 'Error Printing' => 'red1',
-                'Error Slicing'  => 'red2',
-                default          => 'gray',
+                'Error Slicing' => 'red2',
+                default => 'gray',
             },
         );
     }
