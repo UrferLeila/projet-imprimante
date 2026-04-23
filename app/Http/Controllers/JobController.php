@@ -9,9 +9,23 @@ use Illuminate\Support\Str;
 
 class JobController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $jobs = Job::orderBy('create_at', 'desc')->paginate(15);
+        $query = Job::where('id_user', auth()->id());
+
+        $statutsPossibles = ['waiting', 'printing', 'finished', 'error_printing', 'sliced'];
+        if ($request->filled('filter') && in_array($request->filter, $statutsPossibles)) {
+            $query->where('name_state', $request->filter);
+        }
+
+        if ($request->filter === 'alpha') {
+            $query->orderBy('name', 'asc');
+        } else {
+            $query->orderBy('create_at', 'desc');
+        }
+
+        $jobs = $query->paginate(15)->withQueryString();
+
         return view('home', compact('jobs'));
     }
 

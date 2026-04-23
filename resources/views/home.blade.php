@@ -12,16 +12,36 @@
     <div class="main-wrapper">
         <x-header />
         <main class="content-container">
-            <div class="div2-home">
-                <h2 class="title-home">{{ __('home.title_jobs') }}</h2>
-                <x-link-button-style href="{{ route('jobs.create') }}">{{ __('home.add_job') }}</x-link-button-style>
-            </div>
-            <div class="tasks-list">
-                @foreach ($jobs as $job)
-                    <x-card-job :job="$job" :index="$loop->iteration" />
-                @endforeach
+            <div class="space-home">
+                <div class="row-title">
+                    <h1 class="title-home">Vos Jobs</h1>
+                    <x-link-button-style href="{{ route('jobs.create') }}">
+                        {{ __('home.add_job') }}
+                    </x-link-button-style>
+                </div>
+                <div>
+                    <form action="{{ url()->current() }}" method="GET">
+                        <x-dropdown label="Filtrer ou Trier" name="filter" :options="[
+                            '' => 'Par défaut (Plus récents)',
+                            'alpha' => 'Nom (A-Z)',
+                            'waiting' => 'Statut : En attente',
+                            'printing' => 'Statut : Impression',
+                            'finished' => 'Statut : Terminé',
+                            'sliced' => 'Statut : Slicing',
+                            'error_printing' => 'Statut : Erreur d\'impression',
+                            'error_slicing' => 'Statut : Erreur de slicing',
+                        ]" :selected="request('filter')"
+                            onchange="this.form.submit()" />
+                    </form>
+                </div>
+                <div class="tasks-list">
+                    @foreach ($jobs as $job)
+                        <x-card-job :job="$job" :index="$loop->iteration" />
+                    @endforeach
+                </div>
+
             </div>
         </main>
-    </div>
 </body>
+
 </html>

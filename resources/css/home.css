@@ -6,6 +6,12 @@
     color: white;
 }
 
+.space-home {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
 .content-container {
     padding: 40px;
     max-width: 1100px;
@@ -90,6 +96,13 @@
     font-size: 50px;
     font-weight: bold;
     margin: -10px;
+}
+
+.row-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .btn-delete {
