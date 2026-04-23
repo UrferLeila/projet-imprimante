@@ -9,7 +9,7 @@
         </span>
     </div>
     <div class="task-status">
-        <span class="status-label">Status :</span>
+        <span class="status-label">{{ __('home.state_job') }}</span>
         <x-card-state-job :color="$job->status_color" :text="$job->name_state" />
         @if(auth()->user()->role === 'admin')
             <a href="{{ route('jobs.edit', $job) }}" class="btn-edit">
@@ -18,7 +18,7 @@
         @endif
     </div>
     <div class="task-actions">
-        <form action="{{ route('jobs.destroy', $job) }}" method="POST" onsubmit="return confirm('Voulez-vous supprimer ce job ?');">
+        <form action="{{ route('jobs.destroy', $job) }}" method="POST" onsubmit="return confirm('{{ __('home.confirm_delete_job') }}');">
             @csrf
             @method('DELETE') 
             <button type="submit" class="btn-delete ">

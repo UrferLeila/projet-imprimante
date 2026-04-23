@@ -10,11 +10,11 @@
     <x-header/>
     <div class="flex flex-1 items-center justify-center p-4">
         <div class="w-full max-w-xl text-center">
-            <h2 class="title-register">Créer un compte</h2>
+            <h2 class="title-register">{{ __('register.title_register') }}</h2>
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="flex items-center mb-6">
-                    <label class="label-register">Nom :</label>
+                    <label class="label-register">{{ __('register.name_register') }} :</label>
                     <div class="w-full">
                         <input type="text" name="name" value="{{ old('name') }}" required autofocus class="input-register">
                         @error('name')
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="flex items-center mb-6">
-                    <label class="label-register">Email :</label>
+                    <label class="label-register">{{ __('register.email_register') }} :</label>
                     <div class="w-full">
                         <input type="email" name="email" value="{{ old('email') }}" required class="input-register">
                         @error('email')
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="flex items-center mb-6">
-                    <label class="label-register">Mot de passe :</label>
+                    <label class="label-register">{{ __('register.password_register') }} :</label>
                     <div class="w-full">
                         <input type="password" name="password" required class="input-register">
                         @error('password')
@@ -41,16 +41,16 @@
                     </div>
                 </div>
                 <div class="flex items-center mb-10">
-                    <label class="label-register">Confirmer :</label>
+                    <label class="label-register">{{ __('register.confirm_password_register') }} :</label>
                     <div class="w-full">
                         <input type="password" name="password_confirmation" required class="input-register">
                     </div>
                 </div>
-                <button type="submit" class="btn-register shadow-lg">Confirmer</button>
+                <button type="submit" class="btn-register shadow-lg">{{ __('register.bouton_register') }}</button>
             </form>
             <div class="mt-10">
-                <p class="text-gray-300">Vous avez déjà un compte ?</p>
-                <a href="{{ route('login') }}" class="href-register">Connectez-vous ici</a>
+                <p class="text-gray-300">{{ __('register.already_have_account') }}</p>
+                <a href="{{ route('login') }}" class="href-register">{{ __('register.login_register') }}</a>
             </div>
         </div>
     </div>

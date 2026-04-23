@@ -7,11 +7,11 @@
 <section>
     <header>
         <h2 class="password-title">
-            {{ __('Changer le mot de passe') }}
+            {{ __('edit.title_password_edit') }}
         </h2>
 
         <p class="password-desc">
-            {{ __('Assurez-vous que votre compte utilise un mot de passe long et aléatoire pour rester sécurisé.') }}
+            {{ __('edit.description_password_edit') }}
         </p>
     </header>
 
@@ -20,26 +20,26 @@
         @method('put')
 
         <div class="input-group">
-            <x-input-label for="update_password_current_password" :value="__('Mot de passe actuel')" />
+            <x-input-label for="update_password_current_password" :value="__('edit.current_password_password_edit')" />
             <x-text-input id="update_password_current_password" name="current_password" type="password" class="input-field" autocomplete="current-password" />
             <x-input-error :messages="$errors->updatePassword->get('current_password')" class="error-msg" />
         </div>
 
         <div class="input-group">
-            <x-input-label for="update_password_password" :value="__('Nouveau mot de passe')" />
+            <x-input-label for="update_password_password" :value="__('edit.new_password_password_edit')" />
             <x-text-input id="update_password_password" name="password" type="password" class="input-field" autocomplete="new-password" />
             <x-input-error :messages="$errors->updatePassword->get('password')" class="error-msg" />
         </div>
 
         <div class="input-group">
-            <x-input-label for="update_password_password_confirmation" :value="__('Confirmer le mot de passe')" />
+            <x-input-label for="update_password_password_confirmation" :value="__('edit.confirm_password_password_edit')" />
             <x-text-input id="update_password_password_confirmation" name="password_confirmation" type="password" class="input-field" autocomplete="new-password" />
             <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="error-msg" />
         </div>
 
         <div class="flex items-center gap-4">
             <button type="submit" class="btn-save-password">
-                {{ __('Enregistrer') }}
+                {{ __('edit.save_password_edit') }}
             </button>
 
             @if (session('status') === 'password-updated')
@@ -49,7 +49,7 @@
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
                     class="status-msg"
-                >{{ __('Mot de passe mis à jour.') }}</p>
+                >{{ __('edit.password_updated_password_edit') }}</p>
             @endif
         </div>
     </form>
