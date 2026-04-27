@@ -12,17 +12,20 @@ class JobController extends Controller
     public function index(Request $request)
     {
         $query = Job::where('id_user', auth()->id());
+        $filter = $request->query('filter');
 
-        $statutsPossibles = ['waiting', 'printing', 'finished', 'error_printing', 'sliced'];
-        if ($request->filled('filter') && in_array($request->filter, $statutsPossibles)) {
-            $query->where('name_state', $request->filter);
-        }
+        match ($filter) {
+            'abc' => $query->reorder()->orderBy('name', 'asc'),
+            'cba' => $query->reorder()->orderBy('name', 'desc'),
+            'waiting' => $query->where('code_state', 'w'),
+            'printing' => $query->where('code_state', 'p'),
+            'finished' => $query->where('code_state', 'f'),
+            'sliced' => $query->where('code_state', 's'),
+            'error_printing' => $query->where('code_state', 'ep'),
+            'error_slicing' => $query->where('code_state', 'es'),
 
-        if ($request->filter === 'alpha') {
-            $query->orderBy('name', 'asc');
-        } else {
-            $query->orderBy('create_at', 'desc');
-        }
+            default => $query->reorder()->orderBy('create_at', 'desc'),
+        };
 
         $jobs = $query->paginate(15)->withQueryString();
 
@@ -64,7 +67,6 @@ class JobController extends Controller
         }
         return back()->withErrors(['inputfile' => 'Erreur lors du transfert du fichier.']);
     }
-
     public function destroy(Job $job)
     {
         $job->delete();

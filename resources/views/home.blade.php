@@ -20,10 +20,11 @@
                     </x-link-button-style>
                 </div>
                 <div>
-                    <form action="{{ url()->current() }}" method="GET">
+                    <form id="sortForm" action="{{ url()->current() }}" method="GET">
                         <x-dropdown label="Filtrer ou Trier" name="filter" :options="[
                             '' => 'Par défaut (Plus récents)',
-                            'alpha' => 'Nom (A-Z)',
+                            'abc' => 'Nom (A-Z)',
+                            'cba' => 'Nom (Z-A)',
                             'waiting' => 'Statut : En attente',
                             'printing' => 'Statut : Impression',
                             'finished' => 'Statut : Terminé',
@@ -31,7 +32,7 @@
                             'error_printing' => 'Statut : Erreur d\'impression',
                             'error_slicing' => 'Statut : Erreur de slicing',
                         ]" :selected="request('filter')"
-                            onchange="this.form.submit()" />
+                            onchange="document.getElementById('sortForm').submit()" />
                     </form>
                 </div>
                 <div class="tasks-list">

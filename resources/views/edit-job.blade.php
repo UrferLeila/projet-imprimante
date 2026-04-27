@@ -15,12 +15,11 @@
                 <form action="{{ route('jobs.update', $job) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-
                     <div class="mb-10 flex flex-col items-center">
                         <label for="name" class="name-project">{{ __('editJob.name_project_editJob') }}</label>
-                        <input type="text" name="name" id="name" class="input-style" value="{{ old('name', $job->name) }}">
+                        <input type="text" name="name" id="name" class="input-style"
+                            value="{{ old('name', $job->name) }}">
                     </div>
-
                     <div class="mb-10">
                         <label for="stl_filename" class="drop-zone"
                             :class="{
@@ -39,8 +38,7 @@
                                 } else {
                                     fileName = '';
                                     error = '{{ __('editJob.unauthorized_file_format_editJob') }}';
-                                }
-                            ">
+                                }">
                             <input type="file" name="stl_filename" x-ref="fileInput" class="hidden" id="stl_filename"
                                 accept=".stl"
                                 @change="
@@ -64,8 +62,8 @@
                                     <template x-if="fileName">
                                         <svg class="w-16 h-16 text-green-500" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2"d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
                                     </template>
                                     <template x-if="error">
@@ -77,29 +75,28 @@
                                     </template>
                                 </div>
                                 <h3 class="text-xl font-semibold mb-2">
-                                    <span x-show="fileName" class="text-green-600">{{ __('editJob.file_text_editJob') }} <span x-text="fileName"></span></span>
+                                    <span x-show="fileName" class="text-green-600">{{ __('editJob.file_text_editJob') }}
+                                        <span x-text="fileName"></span></span>
                                     <span x-show="error" class="text-red-500" x-text="error"></span>
                                 </h3>
                             </div>
                         </label>
                     </div>
-
                     <x-dropdown class="mb-12 items-center" label="Profil :" name="id_slicer_profile" :options="[1 => 'Blanc, PLA', 2 => 'Blanc, PETG', 3 => 'Noir, ABS', 4 => 'Noir, Nylon']"
                         :selected="$job->id_slicer_profile" />
-
-                    <x-dropdown class="mb-12 items-center" label="Statut du Job :" name="name_state" :options="[
-                        'error_printing' => 'Error_printing',
-                        'error_slicing' => 'Error_slicing',
-                        'finished' => 'Finished',
-                        'printing' => 'Printing',
-                        'sliced' => 'Sliced',
-                        'waiting' => 'Waiting',
-                    ]"
-                        :selected="$job->name_state" />
-
+                    <x-dropdown class="mb-12 items-center" label="Statut du Job :" name="name_state"
+                        :options="[
+                            'error_printing' => 'Error_printing',
+                            'error_slicing' => 'Error_slicing',
+                            'finished' => 'Finished',
+                            'printing' => 'Printing',
+                            'sliced' => 'Sliced',
+                            'waiting' => 'Waiting',
+                        ]":selected="$job->name_state" />
                     <div class="flex flex-col sm:flex-row justify-center gap-6">
-                         <x-link-button-style href="{{ route('home') }}">{{ __('editJob.cancel_button_editJob') }}</x-link-button-style>
-                         <button type="submit" class="btn">{{ __('editJob.edit_button_editJob') }}</button>
+                        <x-link-button-style
+                            href="{{ route('home') }}">{{ __('editJob.cancel_button_editJob') }}</x-link-button-style>
+                        <button type="submit" class="btn">{{ __('editJob.edit_button_editJob') }}</button>
                     </div>
                 </form>
             </div>
